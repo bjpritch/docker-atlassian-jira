@@ -34,6 +34,7 @@ RUN set -x \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml" \
     && chmod 777               "${JIRA_INSTALL}/conf/server.xml"
 
+RUN chgrp -R 0 "${JIRA_INSTALL}" && chmod -R g+rwX "${JIRA_INSTALL}"
 # Use the default unprivileged account. This could be considered bad practice
 # on systems where multiple processes end up being executed by 'daemon' but
 # here we only ever run one process anyway.
